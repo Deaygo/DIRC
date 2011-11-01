@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:id="@+id/scMessage"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dip"
+            android:layout_weight="1"
+            android:fadingEdge="none"
+            android:fillViewport="true" >
+
+            <TextView
+                android:id="@+id/tvChat"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </ScrollView>
+
+        <EditText
+            android:id="@+id/etMessage"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/message_hint"
+            android:singleLine="true" />
+    </LinearLayout>
+
+</LinearLayout>

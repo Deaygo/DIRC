@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.thezomg.irc"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <application
+        android:allowClearUserData="true"
+        android:debuggable="true"
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:name="com.thezomg.irc.DIRC" >
+        <activity
+            android:label="@string/app_name"
+            android:name="com.thezomg.irc.DIRCActivity" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- REQUIRED -->
+        <receiver android:name="com.urbanairship.CoreReceiver" >
+        </receiver>
+
+        <!-- REQUIRED for C2DM and Hybrid -->
+        <receiver
+            android:name="com.urbanairship.push.c2dm.C2DMPushReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+
+            <!-- Receive the actual message -->
+            <intent-filter >
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.thezomg.irc" />
+            </intent-filter>
+            <!-- Receive the registration id -->
+            <intent-filter >
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.thezomg.irc" />
+            </intent-filter>
+        </receiver>
+        
+		<receiver android:name="com.thezomg.irc.IntentReceiver" />
+
+        <!-- REQUIRED -->
+        <!--
+             The 'android:process' parameter is optional. Set it to a value starting
+            with a colon (:) to make it run in a separate,
+            private process
+        -->
+        <service
+            android:name="com.urbanairship.push.PushService"
+            android:process=":com.urbanairship.push.process" />
+
+    </application>
+
+    <uses-sdk android:minSdkVersion="10" />
+
+    <!-- REQUIRED -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- REQUIRED for C2DM -->
+    <!-- Only this application can receive the messages and registration result -->
+    <permission
+        android:name="com.thezomg.irc.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.thezomg.irc.permission.C2D_MESSAGE" />
+
+    <!-- This app has permission to register and receive message -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+</manifest>
